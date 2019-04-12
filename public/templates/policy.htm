@@ -1,0 +1,49 @@
+<div ng-include="'templates/header.htm'"></div>
+	<div class="page-header ">
+        <h1>
+        	<span class="fa fa-anchor"></span> List Policy
+        </h1>
+        <div class="col text-right">
+        	<a class="btn btn-primary" href="/policy/new">Add New Policy</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 ">
+        	<table class="table table-condensed">
+			    <thead>
+			      <tr>
+			        <th>S.No</th>
+			        <th>Icon</th>
+			        <th>Title</th>
+			        <th>Short Desc</th>
+			        <th>Status</th>
+			        <th>Department</th>
+			        <th>Actions</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="announce in announces">
+			      	<td>{{$index+1}}</td>
+			        <td><img style="width:50px; height: 50px;" src="{{announce.content_image}}" /></td>
+			        <td>{{announce.title}}</td>
+			        <td>{{announce.short_desc}}</td>
+			        <td>
+			        	<a ng-if="usertype == 2" href="/policy/unpublish/{{announce.content_id}}" class="badge badge-success" ng-if="announce.publish_status == 1">Unpublish</a>
+			        	<a ng-if="usertype == 2"  href="/policy/publish/{{announce.content_id}}" class="badge badge-warning" ng-if="announce.publish_status == 0">Publish</a>
+			        	<span ng-if="usertype == 1" >
+			        		<span class="badge badge-success" ng-if="announce.publish_status == 1" >Published</span>
+			        		<span class="badge badge-success" ng-if="announce.publish_status == 0" >Not Publish</span>
+				        </span>
+			        </td>
+			        <td>{{announce.department}}</td>
+			        <td>
+			        	<a href='/policy/edit/{{announce.content_type}}/{{announce.deptt_id}}/{{announce.content_id}}' class="btn-link">Edit</a>
+			        	<a href='/policy/delete/{{announce.content_id}}' class="btn-link">Delete</a>
+			        </td>
+			      </tr>
+			    </tbody>
+			</table>
+        <hr>
+        </div>
+    </div>
+<div ng-include="'templates/footer.htm'"></div>

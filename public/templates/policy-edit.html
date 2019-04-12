@@ -1,0 +1,43 @@
+<div ng-include="'templates/header.htm'"></div>
+    <div class="page-header ">
+        <h1>
+            <span class="fa fa-anchor"></span> Edit Policy
+        </h1>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6 offset-md-3">
+            <div ng-if="errormsg.length > 0" class="alert alert-danger">
+                <ul>
+                    <li ng-repeat="msg in errormsg">{{msg}}</li>
+                </ul>
+            </div>
+            <div class="login-form">
+                <div class="form-group text-center" ng-if="formdata.content_image">
+                    <img style="width: 100px; height: 100px;" src="{{formdata.content_image}}" />
+                </div>
+                <div class="form-group">
+                    <input type="file" ng-model="myFile"  class="form-control" id ="myFileField"/>
+                    <button ng-click="uploadFile()" class = "btn btn-primary">Upload File</button>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select class="form-control" ng-model="formdata.deptt_id" ng-options="dept.depttid as dept.name for dept in departments"></select>
+                </div>
+                <div class="form-group">
+                    <label>title</label>
+                    <input placeholder="title" type="text" class="form-control" name="username" ng-model="formdata.title">
+                </div>
+                <div class="form-group">
+                    <label>Short Desc</label>
+                    <input placeholder="Short Desc" type="text" class="form-control" name="username" ng-model="formdata.short_desc">
+                </div>
+                <div class="form-group">
+                    <label>Long Desc</label>
+                    <textarea placeholder="Long Desc"  class="form-control" name="password" ng-model="formdata.long_desc"></textarea>
+                </div>
+                <button ng-click="updateAnnouncement()" type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </div>
+    </div>
+<div ng-include="'templates/footer.htm'"></div>
